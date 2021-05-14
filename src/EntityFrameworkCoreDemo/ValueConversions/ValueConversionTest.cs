@@ -14,7 +14,7 @@ namespace EntityFrameworkCoreDemo.ValueConversions
             context.Peoples.AddRange(new List<People> { 
                 new People
                 {
-                    Id = "1",
+                    Id = Guid.NewGuid().ToString(),
                     Age = 1,
                     Gender = Gender.Male,
                     ContactType = ContactType.Phone,
@@ -22,7 +22,7 @@ namespace EntityFrameworkCoreDemo.ValueConversions
                 },
                 new People
                 {
-                    Id = "2",
+                    Id = Guid.NewGuid().ToString(),
                     Age = 2,
                     Gender = Gender.Male,
                     ContactType = ContactType.Email,

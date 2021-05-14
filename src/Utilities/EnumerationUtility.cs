@@ -9,8 +9,8 @@ namespace Utilities
 {
     public static class EnumerationUtility
     {
-        private static List<LiteralContainer> LiteralContainers = new List<LiteralContainer>();
-        private static object lockObj = new object();
+        private static readonly List<LiteralContainer> LiteralContainers = new();
+        private static readonly object lockObj = new();
 
         /// <summary>
         /// 得枚举的codesystem.
@@ -30,11 +30,11 @@ namespace Utilities
             }
 
             var typeString = type.ToString();
-            if (LiteralContainers.Count(c => c.Type == typeString) <= 0)
+            if (!LiteralContainers.Any(c => c.Type == typeString))
             {
                 lock (lockObj)
                 {
-                    if (LiteralContainers.Count(c => c.Type == typeString) <= 0)
+                    if (!LiteralContainers.Any(c => c.Type == typeString))
                     {
                         foreach (var field in type.GetFields())
                         {
@@ -74,15 +74,18 @@ namespace Utilities
             }
 
             var typeString = type.ToString();
-            if (LiteralContainers.Count(c => c.Type == typeString) <= 0)
+            if (!LiteralContainers.Any(c => c.Type == typeString))
             {
                 lock (lockObj)
                 {
-                    if (LiteralContainers.Count(c => c.Type == typeString) <= 0)
+                    if (!LiteralContainers.Any(c => c.Type == typeString))
                     {
                         foreach (var field in type.GetFields())
                         {
                             var attr = field.GetCustomAttribute<LiteralAttribute>();
+                            if (attr == null)
+                                continue;
+
                             var value = field.GetValue(null);
                             LiteralContainers.Add(new LiteralContainer
                             {

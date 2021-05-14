@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Utilities
 {
-    public class LiteralAttribute: Attribute
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class LiteralAttribute : Attribute
     {
         public string Value { get; }
 
