@@ -14,7 +14,7 @@ namespace EntityFrameworkCoreDemo.Relational
         /// </summary>
         public static void TestSubSearch()
         {
-            using var context = new ScheduleDbContext();
+            using var context = new DemoDbContext();
             context.Database.EnsureCreated();
             context.Schedules.Add(new Schedule
             {
@@ -46,7 +46,7 @@ namespace EntityFrameworkCoreDemo.Relational
         /// </summary>
         public static void TestMultiSubSearch()
         {
-            using var context = new ScheduleDbContext();
+            using var context = new DemoDbContext();
             context.Database.EnsureCreated();
             context.Schedules.Add(new Schedule
             {
@@ -85,7 +85,7 @@ namespace EntityFrameworkCoreDemo.Relational
 
         public static void TestMultiSubSearchEqual()
         {
-            using var context = new ScheduleDbContext();
+            using var context = new DemoDbContext();
             context.Database.EnsureCreated();
             context.Schedules.Add(new Schedule
             {

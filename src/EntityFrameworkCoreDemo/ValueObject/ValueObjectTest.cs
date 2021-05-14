@@ -10,7 +10,7 @@ namespace EntityFrameworkCoreDemo.ValueObject
     {
         public static void Test()
         {
-            using var context = new OrderContext();
+            using var context = new DemoDbContext();
             context.Database.EnsureCreated();
             context.Orders.Add(new Order
             {
