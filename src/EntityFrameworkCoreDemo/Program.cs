@@ -13,19 +13,22 @@ namespace EntityFrameworkCoreDemo
             Initial();
 
             // 根据子表查询
-            Relational.RelationalTest.TestSubSearch();
+            // Relational.RelationalTest.TestSubSearch();
 
             // 根据子表多条件查询
-            Relational.RelationalTest.TestMultiSubSearch();
+            // Relational.RelationalTest.TestMultiSubSearch();
 
             // 根据子表多条件全等
-            Relational.RelationalTest.TestMultiSubSearchEqual();
+            // Relational.RelationalTest.TestMultiSubSearchEqual();
 
             // 值对象配置测试
-            ValueObject.ValueObjectTest.Test();
+            // ValueObject.ValueObjectTest.Test();
 
             // 值转换测试
-            ValueConversions.ValueConversionTest.TestConversion();
+            // ValueConversions.ValueConversionTest.TestConversion();
+
+            // 事务测试
+            // Transactions.TransactionTest.TestSaveChanges();
 
             // 保持程序
             Waiting();

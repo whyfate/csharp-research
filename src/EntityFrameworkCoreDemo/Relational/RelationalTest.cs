@@ -21,7 +21,7 @@ namespace EntityFrameworkCoreDemo.Relational
                 Day = DateTime.Now,
                 Id = Guid.NewGuid().ToString(),
                 Note = "test",
-                Participants = new System.Collections.Generic.List<ScheduleParticipant>
+                Participants = new List<ScheduleParticipant>
                 {
                     new ScheduleParticipant
                     {
@@ -34,10 +34,13 @@ namespace EntityFrameworkCoreDemo.Relational
 
             context.SaveChanges();
 
-            var count = context.Schedules
+            var schedules = context.Schedules
+                // 包含 Participate
+                .Include(s=>s.Participants)
                 .Where(s => s.Participants.Where(p => p.ParticipantID == "123").Any())
-                .ToList().Count;
-            Console.WriteLine(count);
+                .ToList();
+            Console.WriteLine(schedules.Count);
+            Console.WriteLine(schedules.First().Participants.Count);
             Console.WriteLine("成功");
         }
 
@@ -47,7 +50,6 @@ namespace EntityFrameworkCoreDemo.Relational
         public static void TestMultiSubSearch()
         {
             using var context = new DemoDbContext();
-            context.Database.EnsureCreated();
             context.Schedules.Add(new Schedule
             {
                 Day = DateTime.Now,
@@ -86,7 +88,6 @@ namespace EntityFrameworkCoreDemo.Relational
         public static void TestMultiSubSearchEqual()
         {
             using var context = new DemoDbContext();
-            context.Database.EnsureCreated();
             context.Schedules.Add(new Schedule
             {
                 Day = DateTime.Now,

@@ -3,6 +3,7 @@ using System;
 using EntityFrameworkCoreDemo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EntityFrameworkCoreDemo.Migrations
@@ -14,18 +15,20 @@ namespace EntityFrameworkCoreDemo.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.5");
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("EntityFrameworkCoreDemo.Relational.Schedule", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Day")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Note")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -35,16 +38,16 @@ namespace EntityFrameworkCoreDemo.Migrations
             modelBuilder.Entity("EntityFrameworkCoreDemo.Relational.ScheduleParticipant", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ParticipantID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ParticipantType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ScheduleId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -57,24 +60,24 @@ namespace EntityFrameworkCoreDemo.Migrations
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Age")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("ContactNumber")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ContactType")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("Id");
 
@@ -84,13 +87,14 @@ namespace EntityFrameworkCoreDemo.Migrations
             modelBuilder.Entity("EntityFrameworkCoreDemo.ValueObject.Order", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("OrderNo")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -111,27 +115,27 @@ namespace EntityFrameworkCoreDemo.Migrations
                     b.OwnsOne("EntityFrameworkCoreDemo.ValueObject.Address", "Address", b1 =>
                         {
                             b1.Property<string>("OrderId")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("City")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("County")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Detail")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Province")
                                 .IsRequired()
                                 .HasMaxLength(50)
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("Street")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("ZipCode")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.HasKey("OrderId");
 
@@ -145,20 +149,21 @@ namespace EntityFrameworkCoreDemo.Migrations
                         {
                             b1.Property<int>("id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("INTEGER");
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<decimal>("Price")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("decimal(18,4)");
 
                             b1.Property<string>("ProduceId")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("ProduceName")
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("orderId")
                                 .IsRequired()
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(50)");
 
                             b1.HasKey("id");
 

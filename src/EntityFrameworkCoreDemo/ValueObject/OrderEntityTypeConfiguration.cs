@@ -13,6 +13,7 @@ namespace EntityFrameworkCoreDemo.ValueObject
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(k => k.Id);
+            builder.Property(k => k.Id).HasMaxLength(50);
             builder.OwnsOne(o => o.Address, o =>
             {
                 o.Property(o => o.Province).HasMaxLength(50).IsRequired();
@@ -22,6 +23,7 @@ namespace EntityFrameworkCoreDemo.ValueObject
                 a.WithOwner().HasForeignKey("orderId");
                 a.Property<int>("id");
                 a.HasKey("id");
+                a.Property(p => p.Price).HasColumnType("decimal(18,4)");
             });
         }
     }

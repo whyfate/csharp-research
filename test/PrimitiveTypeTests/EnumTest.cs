@@ -6,6 +6,9 @@ using Xunit;
 
 namespace PrimitiveTypeTests
 {
+    /// <summary>
+    /// Ã¶¾Ù²âÊÔ.
+    /// </summary>
     public class EnumTest
     {
         public enum Severity
@@ -25,7 +28,9 @@ namespace PrimitiveTypeTests
             Unknown
         }
 
-
+        /// <summary>
+        /// ²âÊÔÅÅĞò.
+        /// </summary>
         [Fact]
         public void TestSort()
         {
@@ -42,7 +47,9 @@ namespace PrimitiveTypeTests
             Assert.Equal(Severity.Error, list.OrderByDescending(l => l).First());
         }
 
-
+        /// <summary>
+        /// ²âÊÔÄ¬ÈÏÖµ.
+        /// </summary>
         [Fact]
         public void TestDefaultValue()
         {
@@ -53,6 +60,9 @@ namespace PrimitiveTypeTests
             Assert.Equal(Gender.Male, gender);
         }
 
+        /// <summary>
+        /// ²âÊÔenum×ªcode
+        /// </summary>
         [Fact]
         public void TestEnumeration2Code()
         {
@@ -61,6 +71,9 @@ namespace PrimitiveTypeTests
                 Gender? gender = null;
                 EnumerationUtility.Enumeration2Code(gender.Value);
             });
+
+            Gender gender = Gender.Male;
+            Assert.Equal("01", EnumerationUtility.Enumeration2Code(gender));
         }
     }
 }
