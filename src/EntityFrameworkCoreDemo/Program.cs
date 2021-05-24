@@ -21,6 +21,9 @@ namespace EntityFrameworkCoreDemo
             // 根据子表多条件全等
             // Relational.RelationalTest.TestMultiSubSearchEqual();
 
+            // 根据子表包含查询
+            Relational.RelationalTest.TestSubSearchContains();
+
             // 值对象配置测试
             // ValueObject.ValueObjectTest.Test();
 

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionVisitorDemo", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCoreDemo", "src\EntityFrameworkCoreDemo\EntityFrameworkCoreDemo.csproj", "{1A31AB67-0597-460E-AEF7-9CFA557BFCB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "src\Utilities\Utilities.csproj", "{12DAB5B7-1AE8-4027-8CBF-DB36CEBC72B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "src\Utilities\Utilities.csproj", "{12DAB5B7-1AE8-4027-8CBF-DB36CEBC72B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

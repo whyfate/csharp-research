@@ -36,7 +36,7 @@ namespace EntityFrameworkCoreDemo.Relational
 
             var schedules = context.Schedules
                 // 包含 Participate
-                .Include(s=>s.Participants)
+                .Include(s => s.Participants)
                 .Where(s => s.Participants.Where(p => p.ParticipantID == "123").Any())
                 .ToList();
             Console.WriteLine(schedules.Count);
@@ -119,6 +119,54 @@ namespace EntityFrameworkCoreDemo.Relational
                 s.Participants.Where(p => p.ParticipantID == "456" && p.ParticipantType == "Device").Any()
                 &&
                 s.Participants.Count == 2
+                )
+                .ToList().Count;
+            Console.WriteLine(count);
+            Console.WriteLine("成功");
+        }
+
+        public static void TestSubSearchContains()
+        {
+            using var context = new DemoDbContext();
+            context.Schedules.AddRange(new List<Schedule> {
+                new Schedule
+                {
+                    Day = DateTime.Now,
+                    Id = Guid.NewGuid().ToString(),
+                    Note = "test",
+                    Participants = new List<ScheduleParticipant>
+                    {
+                        new ScheduleParticipant
+                        {
+                            Id =Guid.NewGuid().ToString(),
+                            ParticipantID="123",
+                            ParticipantType= "Practitioner",
+                        }
+                    }
+                },
+                new Schedule
+                {
+                    Day = DateTime.Now,
+                    Id = Guid.NewGuid().ToString(),
+                    Note = "test",
+                    Participants = new List<ScheduleParticipant>
+                    {
+                        new ScheduleParticipant
+                        {
+                            Id =Guid.NewGuid().ToString(),
+                            ParticipantID="456",
+                            ParticipantType= "Practitioner",
+                        }
+                    }
+                }
+            });
+
+            context.SaveChanges();
+
+            var participantIDs = new string[] { "123", "456" };
+            var count = context.Schedules
+                .Where(s =>
+                s.Participants.Where(p => participantIDs.Contains(p.ParticipantID)).Any()
                 )
                 .ToList().Count;
             Console.WriteLine(count);

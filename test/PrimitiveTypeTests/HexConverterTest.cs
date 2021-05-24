@@ -15,9 +15,9 @@ namespace PrimitiveTypeTests
         [Fact]
         public void Binary2Hex()
         {
-            var buffer = Encoding.UTF8.GetBytes("1");
+            var buffer = Encoding.UTF8.GetBytes("A");
             var hexString = buffer.Select(b => Convert.ToString(b, 16));
-            Assert.Equal("1", hexString.First());
+            Assert.Equal("41", hexString.First());
         }
     }
 }
