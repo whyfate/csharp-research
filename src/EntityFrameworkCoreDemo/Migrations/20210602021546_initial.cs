@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EntityFrameworkCoreDemo.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,15 +11,15 @@ namespace EntityFrameworkCoreDemo.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    OrderNo = table.Column<string>(type: "TEXT", nullable: true),
-                    OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Address_ZipCode = table.Column<string>(type: "TEXT", nullable: true),
-                    Address_Province = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
-                    Address_City = table.Column<string>(type: "TEXT", nullable: true),
-                    Address_County = table.Column<string>(type: "TEXT", nullable: true),
-                    Address_Street = table.Column<string>(type: "TEXT", nullable: true),
-                    Address_Detail = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    OrderNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Address_ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address_Province = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address_County = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address_Detail = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,11 +30,11 @@ namespace EntityFrameworkCoreDemo.Migrations
                 name: "Peoples",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Age = table.Column<int>(type: "INTEGER", nullable: false),
-                    Gender = table.Column<string>(type: "TEXT", maxLength: 25, nullable: false),
-                    ContactType = table.Column<string>(type: "TEXT", maxLength: 25, nullable: false),
-                    ContactNumber = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true)
+                    Id = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    ContactType = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    ContactNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,9 +45,9 @@ namespace EntityFrameworkCoreDemo.Migrations
                 name: "Schedules",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Day = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Note = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Day = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,12 +58,12 @@ namespace EntityFrameworkCoreDemo.Migrations
                 name: "OrderItem",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProduceId = table.Column<string>(type: "TEXT", nullable: true),
-                    ProduceName = table.Column<string>(type: "TEXT", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProduceId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProduceName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    orderId = table.Column<string>(type: "TEXT", nullable: false)
+                    orderId = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,10 +80,10 @@ namespace EntityFrameworkCoreDemo.Migrations
                 name: "ScheduleParticipant",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    ParticipantType = table.Column<string>(type: "TEXT", nullable: true),
-                    ParticipantID = table.Column<string>(type: "TEXT", nullable: true),
-                    ScheduleId = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ParticipantType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ParticipantID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ScheduleId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {

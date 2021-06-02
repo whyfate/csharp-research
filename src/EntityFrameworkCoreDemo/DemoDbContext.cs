@@ -23,7 +23,7 @@ namespace EntityFrameworkCoreDemo
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite("Data Source=demo.db;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=efcore-demo;Trusted_Connection=True;");
             optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder =>
             {
                 builder.AddConsole();

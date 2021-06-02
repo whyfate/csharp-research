@@ -22,7 +22,7 @@ namespace EntityFrameworkCoreDemo
             // Relational.RelationalTest.TestMultiSubSearchEqual();
 
             // 根据子表包含查询
-            Relational.RelationalTest.TestSubSearchContains();
+            // Relational.RelationalTest.TestSubSearchContains();
 
             // 值对象配置测试
             // ValueObject.ValueObjectTest.Test();
@@ -40,7 +40,7 @@ namespace EntityFrameworkCoreDemo
         static void Waiting()
         {
             Console.WriteLine("任意键结束进程...");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         static void Initial()
