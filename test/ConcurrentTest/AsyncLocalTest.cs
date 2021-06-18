@@ -28,11 +28,12 @@ namespace ConcurrentTest
             for (int i = 0; i < 10; i++)
             {
                 var j = i;
-                Task.Run(() =>
-                {
-                    asyncLocal.Value = j;
 
-                    Task.Delay(10);
+                asyncLocal.Value = j;
+                
+                Task.Run(async () =>
+                {
+                    await Task.Yield();
 
                     Assert.Equal(j, asyncLocal.Value);
                 });
@@ -49,7 +50,7 @@ namespace ConcurrentTest
                 {
                     asyncLocal.Value = 10;
                 });
-                
+
                 Assert.NotEqual(10, asyncLocal.Value);
             });
         }

@@ -24,5 +24,23 @@ namespace ConcurrentTest
                 Assert.Equal(i, threadLocal.Value);
             });
         }
+
+        [Fact]
+        public async Task Test2()
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                var j = i;
+                
+                threadLocal.Value = j;
+
+                await Task.Run(async() =>
+                {
+                    await Task.Yield();
+
+                    Assert.Equal(j, threadLocal.Value);
+                });
+            }
+        }
     }
 }
