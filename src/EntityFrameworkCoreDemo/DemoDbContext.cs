@@ -28,6 +28,11 @@ namespace EntityFrameworkCoreDemo
             {
                 builder.AddConsole();
             }));
+
+            // 拦截器
+            optionsBuilder.AddInterceptors(new Interceptors.CommandInterceptor());
+            optionsBuilder.AddInterceptors(new Interceptors.ConnectionInterceptor());
+            optionsBuilder.AddInterceptors(new Interceptors.TransactionInterceptor());
         }
 
         /// <summary>

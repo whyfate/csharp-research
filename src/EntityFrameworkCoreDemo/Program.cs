@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace EntityFrameworkCoreDemo
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             // 数据库初始化
-            Initial();
+            await Initial();
 
             // 根据子表查询
             // Relational.RelationalTest.TestSubSearch();
@@ -33,6 +33,18 @@ namespace EntityFrameworkCoreDemo
             // 事务测试
             // Transactions.TransactionTest.TestSaveChanges();
 
+            // SaveChanges:事务提交
+            // await Interceptors.TransactionInterceptorTest.TestSaveChanges();
+
+            // Transaction Commit 比 SaveChanges 多了个 CreatedSavepointAsync
+            // await Interceptors.TransactionInterceptorTest.TestTransaction();
+
+            // Tracking Test
+            // await Tracking.TrackingTest.Test();
+
+            // Tracking Performance
+            // await Tracking.TrackingTest.Performance();
+
             // 保持程序
             Waiting();
         }
@@ -43,10 +55,10 @@ namespace EntityFrameworkCoreDemo
             Console.ReadKey();
         }
 
-        static void Initial()
+        static async Task Initial()
         {
             using var context = new DemoDbContext();
-            context.Database.Migrate();
+            await context.Database.MigrateAsync();
             Console.WriteLine("数据库创建成功...");
         }
     }
