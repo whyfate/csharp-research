@@ -31,7 +31,10 @@ namespace EntityFrameworkCoreDemo
             // ValueConversions.ValueConversionTest.TestConversion();
 
             // 事务测试
-            // Transactions.TransactionTest.TestSaveChanges();
+            // await Transactions.TransactionTest.TestSaveChanges();
+
+            // 事务测试 SaveChanges and Transaction
+            //await Transactions.TransactionTest.TestSaveChangeAndTransaction();
 
             // SaveChanges:事务提交
             // await Interceptors.TransactionInterceptorTest.TestSaveChanges();

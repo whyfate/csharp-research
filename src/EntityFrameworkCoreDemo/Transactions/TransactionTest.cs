@@ -9,23 +9,42 @@ namespace EntityFrameworkCoreDemo.Transactions
 {
     public class TransactionTest
     {
-        public static void TestSaveChanges()
+        public static async Task TestSaveChanges()
         {
             // 添加一条数据
-            string existsId = null;
             using (var context = new DemoDbContext())
             {
-                var existsOrder = context.Orders.FirstOrDefault();
-                if (existsOrder != null)
+                context.Orders.Add(new Order
                 {
-                    existsId = existsOrder.Id;
-                }
-                else
+                    Id = Guid.NewGuid().ToString(),
+                    OrderDate = DateTime.Now,
+                    OrderNo = "1",
+                    Items = new List<OrderItem>
+                        {
+                            new OrderItem
+                            {
+                                Price = 1,
+                                ProduceId = "1",
+                                ProduceName = ".NET"
+                            }
+                        }
+                });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task TestSaveChangeAndTransaction()
+        {
+            using (var context = new DemoDbContext())
+            {
+                var trans = await context.Database.BeginTransactionAsync();
+
+                try
                 {
-                    existsId = "1";
                     context.Orders.Add(new Order
                     {
-                        Id = existsId,
+                        Id = Guid.NewGuid().ToString(),
                         OrderDate = DateTime.Now,
                         OrderNo = "1",
                         Items = new List<OrderItem>
@@ -39,57 +58,32 @@ namespace EntityFrameworkCoreDemo.Transactions
                         }
                     });
 
-                    context.SaveChanges();
-                }
-            }
+                    await context.SaveChangesAsync();
 
-            var notExistsId = Guid.NewGuid().ToString();
-            using (var context = new DemoDbContext())
-            {
-                context.Orders.Add(new Order
-                {
-                    Id = notExistsId,
-                    OrderDate = DateTime.Now,
-                    OrderNo = "2",
-                    Items = new List<OrderItem>
+                    context.Orders.Add(new Order
                     {
-                        new OrderItem
+                        Id = Guid.NewGuid().ToString(),
+                        OrderDate = DateTime.Now,
+                        OrderNo = "1",
+                        Items = new List<OrderItem>
                         {
-                            Price = 1,
-                            ProduceId = "1",
-                            ProduceName = ".NET"
+                            new OrderItem
+                            {
+                                Price = 1,
+                                ProduceId = "2",
+                                ProduceName = "Java"
+                            }
                         }
-                    }
-                });
+                    });
 
-                context.Orders.Add(new Order
-                {
-                    Id = existsId,
-                    OrderDate = DateTime.Now,
-                    OrderNo = "2",
-                    Items = new List<OrderItem>
-                    {
-                        new OrderItem
-                        {
-                            Price = 1,
-                            ProduceId = "1",
-                            ProduceName = ".NET"
-                        }
-                    }
-                });
+                    await context.SaveChangesAsync();
 
-                try
-                {
-                    context.SaveChanges();
+                    await trans.CommitAsync();
                 }
                 catch
                 {
+                    await trans.RollbackAsync();
                 }
-            }
-
-            using (var context = new DemoDbContext())
-            {
-                Console.WriteLine(context.Orders.Where(o => o.Id == notExistsId).Count());
             }
         }
     }
