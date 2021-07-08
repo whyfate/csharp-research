@@ -12,6 +12,22 @@ namespace EntityFrameworkCoreDemo
             // 数据库初始化
             await Initial();
 
+            try
+            {
+                await ExecuteAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+
+            // 保持程序
+            Waiting();
+        }
+
+        static async Task ExecuteAsync()
+        {
             // 根据子表查询
             // Relational.RelationalTest.TestSubSearch();
 
@@ -48,8 +64,8 @@ namespace EntityFrameworkCoreDemo
             // Tracking Performance
             // await Tracking.TrackingTest.Performance();
 
-            // 保持程序
-            Waiting();
+            // override SaveChanges
+            await Transactions.SaveChangesOverrideTest.Test();
         }
 
         static void Waiting()

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -12,7 +13,7 @@ namespace EntityFrameworkCoreDemo.Interceptors
     /// <summary>
     /// 事务拦截器.
     /// </summary>
-    public class TransactionInterceptor: DbTransactionInterceptor
+    public class TransactionInterceptor : DbTransactionInterceptor
     {
         public override Task CreatedSavepointAsync(DbTransaction transaction, TransactionEventData eventData, CancellationToken cancellationToken = default)
         {
@@ -70,11 +71,11 @@ namespace EntityFrameworkCoreDemo.Interceptors
             return base.TransactionStartedAsync(connection, eventData, result, cancellationToken);
         }
 
-        public override ValueTask<InterceptionResult<DbTransaction>> TransactionStartingAsync(DbConnection connection, TransactionStartingEventData eventData, InterceptionResult<DbTransaction> result, CancellationToken cancellationToken = default)
+        public override async ValueTask<InterceptionResult<DbTransaction>> TransactionStartingAsync(DbConnection connection, TransactionStartingEventData eventData, InterceptionResult<DbTransaction> result, CancellationToken cancellationToken = default)
         {
             Console.WriteLine($"{nameof(TransactionStartingAsync)}---invoke---TransactionId:{eventData.TransactionId}");
 
-            return base.TransactionStartingAsync(connection, eventData, result, cancellationToken);
+            return await base.TransactionStartingAsync(connection, eventData, result, cancellationToken);
         }
 
         public override ValueTask<DbTransaction> TransactionUsedAsync(DbConnection connection, TransactionEventData eventData, DbTransaction result, CancellationToken cancellationToken = default)

@@ -11,15 +11,17 @@ namespace EntityFrameworkCoreDemo.Transactions
     {
         public static async Task TestSaveChanges()
         {
-            // 添加一条数据
-            using (var context = new DemoDbContext())
+            try
             {
-                context.Orders.Add(new Order
+                // 添加一条数据
+                using (var context = new DemoDbContext())
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    OrderDate = DateTime.Now,
-                    OrderNo = "1",
-                    Items = new List<OrderItem>
+                    context.Orders.Add(new Order
+                    {
+                        Id = "999",
+                        OrderDate = DateTime.Now,
+                        OrderNo = "1",
+                        Items = new List<OrderItem>
                         {
                             new OrderItem
                             {
@@ -28,9 +30,19 @@ namespace EntityFrameworkCoreDemo.Transactions
                                 ProduceName = ".NET"
                             }
                         }
-                });
+                    });
 
-                await context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch
+            {
+            }
+
+            using (var context = new DemoDbContext())
+            {
+                var count = context.Orders.Where(o => o.Id == "999").Count();
+                Console.WriteLine(count == 1);
             }
         }
 
