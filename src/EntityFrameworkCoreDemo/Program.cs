@@ -28,6 +28,9 @@ namespace EntityFrameworkCoreDemo
 
         static async Task ExecuteAsync()
         {
+            // basic test
+            await Basic.BasicTest.TestUpdateAsync();
+
             // 根据子表查询
             // Relational.RelationalTest.TestSubSearch();
 
@@ -65,7 +68,7 @@ namespace EntityFrameworkCoreDemo
             // await Tracking.TrackingTest.Performance();
 
             // override SaveChanges
-            await Transactions.SaveChangesOverrideTest.Test();
+            // await Transactions.SaveChangesOverrideTest.Test();
         }
 
         static void Waiting()
