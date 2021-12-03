@@ -1,4 +1,5 @@
-﻿using BasicDemo.KeyWords;
+﻿using BasicDemo.Events;
+using BasicDemo.KeyWords;
 using System;
 
 namespace BasicDemo
@@ -9,6 +10,7 @@ namespace BasicDemo
         {
             // UsingDemo.TestScope();
             // UsingDemo.TestScope2();
+            // EventTest.TestEvent();
 
             Console.ReadLine();
         }

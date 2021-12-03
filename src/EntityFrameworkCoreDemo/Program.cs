@@ -29,7 +29,9 @@ namespace EntityFrameworkCoreDemo
         static async Task ExecuteAsync()
         {
             // basic test
-            await Basic.BasicTest.TestUpdateAsync();
+            // await Basic.BasicTest.TestUpdateAsync();
+            // await Basic.BasicTest.TestUpdate2Async();
+            await Basic.BasicTest.TestUpdate3Async();
 
             // 根据子表查询
             // Relational.RelationalTest.TestSubSearch();
