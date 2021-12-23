@@ -4,6 +4,7 @@ using EntityFrameworkCoreDemo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,61 +12,17 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkCoreDemo.Migrations
 {
     [DbContext(typeof(DemoDbContext))]
-    partial class DemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211223052645_RemoveAddressProvinceRequired")]
+    partial class RemoveAddressProvinceRequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EntityFrameworkCoreDemo.LazyLoad.Blog", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("EntityFrameworkCoreDemo.LazyLoad.Post", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("BlogId")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("BlogId1")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogId");
-
-                    b.HasIndex("BlogId1");
-
-                    b.ToTable("Posts");
-                });
 
             modelBuilder.Entity("EntityFrameworkCoreDemo.Relational.Schedule", b =>
                 {
@@ -149,19 +106,6 @@ namespace EntityFrameworkCoreDemo.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("EntityFrameworkCoreDemo.LazyLoad.Post", b =>
-                {
-                    b.HasOne("EntityFrameworkCoreDemo.LazyLoad.Blog", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("BlogId");
-
-                    b.HasOne("EntityFrameworkCoreDemo.LazyLoad.Blog", "Blog")
-                        .WithMany()
-                        .HasForeignKey("BlogId1");
-
-                    b.Navigation("Blog");
-                });
-
             modelBuilder.Entity("EntityFrameworkCoreDemo.Relational.ScheduleParticipant", b =>
                 {
                     b.HasOne("EntityFrameworkCoreDemo.Relational.Schedule", "Schedule")
@@ -188,7 +132,6 @@ namespace EntityFrameworkCoreDemo.Migrations
                                 .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Province")
-                                .IsRequired()
                                 .HasMaxLength(50)
                                 .HasColumnType("nvarchar(50)");
 
@@ -240,11 +183,6 @@ namespace EntityFrameworkCoreDemo.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("EntityFrameworkCoreDemo.LazyLoad.Blog", b =>
-                {
-                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("EntityFrameworkCoreDemo.Relational.Schedule", b =>

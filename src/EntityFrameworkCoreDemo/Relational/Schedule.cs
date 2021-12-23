@@ -14,6 +14,6 @@ namespace EntityFrameworkCoreDemo.Relational
 
         public string Note { get; set; }
 
-        public List<ScheduleParticipant> Participants { get; set; }
+        public virtual List<ScheduleParticipant> Participants { get; set; }
     }
 }

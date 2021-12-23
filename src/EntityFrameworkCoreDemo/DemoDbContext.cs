@@ -23,6 +23,10 @@ namespace EntityFrameworkCoreDemo
 
         public virtual DbSet<ValueConversions.People> Peoples { get; set; }
 
+        public virtual DbSet<LazyLoad.Blog> Blogs { get; set; }
+
+        public virtual DbSet<LazyLoad.Post> Posts { get; set; }
+
         /// <summary>
         /// 重写SaveChanges.
         /// </summary>
@@ -55,6 +59,9 @@ namespace EntityFrameworkCoreDemo
                 optionsBuilder.AddInterceptors(new Interceptors.CommandInterceptor());
                 optionsBuilder.AddInterceptors(new Interceptors.ConnectionInterceptor());
                 optionsBuilder.AddInterceptors(new Interceptors.TransactionInterceptor());
+
+                // 延迟加载
+                optionsBuilder.UseLazyLoadingProxies();
             }
         }
 
@@ -73,6 +80,10 @@ namespace EntityFrameworkCoreDemo
 
             // value conversion
             modelBuilder.ApplyConfiguration(new ValueConversions.PersonEntityTypeConfiguration());
+
+            // lazy load
+            modelBuilder.ApplyConfiguration(new LazyLoad.BlogEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new LazyLoad.PostEntityTypeConfiguration());
         }
     }
 }

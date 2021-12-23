@@ -31,7 +31,7 @@ namespace EntityFrameworkCoreDemo
             // basic test
             // await Basic.BasicTest.TestUpdateAsync();
             // await Basic.BasicTest.TestUpdate2Async();
-            await Basic.BasicTest.TestUpdate3Async();
+            // await Basic.BasicTest.TestUpdate3Async();
 
             // 根据子表查询
             // Relational.RelationalTest.TestSubSearch();
@@ -47,6 +47,7 @@ namespace EntityFrameworkCoreDemo
 
             // 值对象配置测试
             // ValueObject.ValueObjectTest.Test();
+            await ValueObject.ValueObjectTest.TestNullVOAsync();
 
             // 值转换测试
             // ValueConversions.ValueConversionTest.TestConversion();
@@ -71,6 +72,9 @@ namespace EntityFrameworkCoreDemo
 
             // override SaveChanges
             // await Transactions.SaveChangesOverrideTest.Test();
+
+            // lazy load
+            // await LazyLoad.LazyLoadTest.TestAsync();
         }
 
         static void Waiting()

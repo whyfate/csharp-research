@@ -15,6 +15,6 @@ namespace EntityFrameworkCoreDemo.Relational
         public string ParticipantID { get; set; }
 
         public string ScheduleId { get; set; }
-        public Schedule Schedule { get; set; }
+        public virtual Schedule Schedule { get; set; }
     }
 }
