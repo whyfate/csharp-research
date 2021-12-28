@@ -1,4 +1,5 @@
-﻿using BasicDemo.Events;
+﻿using BasicDemo.Asynchronous;
+using BasicDemo.Events;
 using BasicDemo.KeyWords;
 using System;
 
@@ -11,6 +12,7 @@ namespace BasicDemo
             // UsingDemo.TestScope();
             // UsingDemo.TestScope2();
             // EventTest.TestEvent();
+            AsynchronousTest.TestScope();
 
             Console.ReadLine();
         }
