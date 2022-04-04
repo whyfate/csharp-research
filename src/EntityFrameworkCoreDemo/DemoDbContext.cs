@@ -18,6 +18,7 @@ namespace EntityFrameworkCoreDemo
         { }
 
         public virtual DbSet<Relational.Schedule> Schedules { get; set; }
+        public virtual DbSet<Relational.Cascades.Parent> Parents { get; set; }
 
         public virtual DbSet<ValueObject.Order> Orders { get; set; }
 
@@ -72,8 +73,9 @@ namespace EntityFrameworkCoreDemo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Relational Configuration
-            modelBuilder.ApplyConfiguration(new Relational.ScheduleEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new Relational.ParentEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new Relational.ScheduleParticipantEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new Relational.Cascades.ParentEntityTypeConfiguration());
 
             // ValueObject Configuration
             modelBuilder.ApplyConfiguration(new ValueObject.OrderEntityTypeConfiguration());

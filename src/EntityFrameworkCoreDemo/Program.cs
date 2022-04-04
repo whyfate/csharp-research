@@ -32,6 +32,7 @@ namespace EntityFrameworkCoreDemo
             // await Basic.BasicTest.TestUpdateAsync();
             // await Basic.BasicTest.TestUpdate2Async();
             // await Basic.BasicTest.TestUpdate3Async();
+            await Basic.BasicSelectTest.Test404PropertyAsync();
 
             // 根据子表查询
             // Relational.RelationalTest.TestSubSearch();
@@ -44,10 +45,12 @@ namespace EntityFrameworkCoreDemo
 
             // 根据子表包含查询
             // Relational.RelationalTest.TestSubSearchContains();
+            // await Relational.Cascades.CascadeTest.TestQueryAsync();
+            // await Relational.Cascades.CascadeTest.TestUpdateAsync();
 
             // 值对象配置测试
             // ValueObject.ValueObjectTest.Test();
-            await ValueObject.ValueObjectTest.TestNullVOAsync();
+            // await ValueObject.ValueObjectTest.TestNullVOAsync();
 
             // 值转换测试
             // ValueConversions.ValueConversionTest.TestConversion();

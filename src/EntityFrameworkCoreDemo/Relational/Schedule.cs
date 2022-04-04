@@ -10,6 +10,8 @@ namespace EntityFrameworkCoreDemo.Relational
     {
         public string Id { get; set; }
 
+        public ScheduleLevel Level { get; set; }
+
         public DateTime Day { get; set; }
 
         public string Note { get; set; }

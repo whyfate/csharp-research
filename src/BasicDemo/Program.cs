@@ -12,7 +12,7 @@ namespace BasicDemo
             // UsingDemo.TestScope();
             // UsingDemo.TestScope2();
             // EventTest.TestEvent();
-            AsynchronousTest.TestScope();
+            // AsynchronousTest.TestScope();
 
             Console.ReadLine();
         }

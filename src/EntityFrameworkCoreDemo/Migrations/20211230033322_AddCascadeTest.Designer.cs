@@ -4,6 +4,7 @@ using EntityFrameworkCoreDemo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkCoreDemo.Migrations
 {
     [DbContext(typeof(DemoDbContext))]
-    partial class DemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211230033322_AddCascadeTest")]
+    partial class AddCascadeTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +77,6 @@ namespace EntityFrameworkCoreDemo.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("parent", (string)null);
@@ -90,9 +89,6 @@ namespace EntityFrameworkCoreDemo.Migrations
 
                     b.Property<DateTime>("Day")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
@@ -197,9 +193,6 @@ namespace EntityFrameworkCoreDemo.Migrations
                             b1.Property<string>("Name")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.Property<string>("Title")
-                                .HasColumnType("nvarchar(max)");
-
                             b1.HasKey("ParentId", "Id");
 
                             b1.ToTable("children", (string)null);
@@ -220,9 +213,6 @@ namespace EntityFrameworkCoreDemo.Migrations
                                         .HasColumnType("int");
 
                                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b2.Property<int>("Id"), 1L, 1);
-
-                                    b2.Property<string>("Code")
-                                        .HasColumnType("nvarchar(max)");
 
                                     b2.Property<string>("Name")
                                         .HasColumnType("nvarchar(max)");

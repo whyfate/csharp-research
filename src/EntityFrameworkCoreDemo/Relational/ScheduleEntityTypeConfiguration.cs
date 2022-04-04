@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EntityFrameworkCoreDemo.Relational
 {
-    internal class ScheduleEntityTypeConfiguration : IEntityTypeConfiguration<Schedule>
+    internal class ParentEntityTypeConfiguration : IEntityTypeConfiguration<Schedule>
     {
         public void Configure(EntityTypeBuilder<Schedule> builder)
         {
