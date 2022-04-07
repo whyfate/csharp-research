@@ -1,4 +1,4 @@
-namespace ExpressionVisitorDemo
+namespace ExpressionDemo
 {
     public class Person
     {

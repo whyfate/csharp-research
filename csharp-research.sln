@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimitiveTypeTests", "test\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{01CA9551-F12D-4342-88E2-81977BC45EDC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionVisitorDemo", "src\ExpressionVisitorDemo\ExpressionVisitorDemo.csproj", "{10D9D0A3-0973-4A92-922D-F8441A616D77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionDemo", "src\ExpressionDemo\ExpressionDemo.csproj", "{10D9D0A3-0973-4A92-922D-F8441A616D77}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCoreDemo", "src\EntityFrameworkCoreDemo\EntityFrameworkCoreDemo.csproj", "{1A31AB67-0597-460E-AEF7-9CFA557BFCB2}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcurrentTest", "test\Conc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicDemo", "src\BasicDemo\BasicDemo.csproj", "{27D9C588-CB9C-42C8-9284-13C9894A0914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreDemo", "src\AspNetCoreDemo\AspNetCoreDemo.csproj", "{6A0FC18C-FDD4-404A-B117-2921FF749AD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreDemo", "src\AspNetCoreDemo\AspNetCoreDemo.csproj", "{6A0FC18C-FDD4-404A-B117-2921FF749AD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
