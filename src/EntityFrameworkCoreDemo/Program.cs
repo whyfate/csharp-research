@@ -32,7 +32,8 @@ namespace EntityFrameworkCoreDemo
             // await Basic.BasicTest.TestUpdateAsync();
             // await Basic.BasicTest.TestUpdate2Async();
             // await Basic.BasicTest.TestUpdate3Async();
-            await Basic.BasicSelectTest.Test404PropertyAsync();
+            await Basic.BasicTest.TestUpdate4Async();
+            // await Basic.BasicSelectTest.Test404PropertyAsync();
 
             // 根据子表查询
             // Relational.RelationalTest.TestSubSearch();
