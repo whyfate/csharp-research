@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BasicDemo.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace BasicDemo.Asynchronous
 {
     internal class AsynchronousTest
     {
+        [Command]
         public static void TestScope()
         {
             for (int i = 0; i < 30; i++)

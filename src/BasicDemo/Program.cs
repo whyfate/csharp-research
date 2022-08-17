@@ -1,22 +1,12 @@
-﻿using BasicDemo.Asynchronous;
-using BasicDemo.Events;
-using BasicDemo.KeyWords;
-using BasicDemo.Serialization;
+﻿using BasicDemo.Commands;
 using System;
 
-namespace BasicDemo
+CommandLineTest.Initial();
+Console.WriteLine("please input your command:-?, -h, --help  Show help and usage information");
+var txt =  Console.ReadLine();
+while (txt!="exit")
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            // UsingDemo.TestScope();
-            // UsingDemo.TestScope2();
-            // EventTest.TestEvent();
-            // AsynchronousTest.TestScope();
-            // ConstructorTest.Test();
+    await CommandLineTest.InvokeAsync(txt);
 
-            Console.ReadLine();
-        }
-    }
+    txt = Console.ReadLine();
 }

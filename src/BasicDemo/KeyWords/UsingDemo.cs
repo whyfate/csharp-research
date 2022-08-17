@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BasicDemo.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace BasicDemo.KeyWords
 {
-    public class UsingDemo
+    internal class UsingDemo
     {
-        public static void TestScope()
+        [Command]
+        internal static void TestScope()
         {
             using var test = new UsingTest();
             Console.WriteLine("---start---");
@@ -26,7 +28,8 @@ namespace BasicDemo.KeyWords
             Console.WriteLine("---end---");
         }
 
-        public static void TestScope2()
+        [Command]
+        internal static void TestScope2()
         {
             using (var test = new UsingTest())
             {

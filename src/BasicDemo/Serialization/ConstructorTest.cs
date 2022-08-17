@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BasicDemo.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace BasicDemo.Serialization;
 
 internal class ConstructorTest
 {
+    [Command]
     internal static void Test()
     {
         var entity = new Entity("张三");
