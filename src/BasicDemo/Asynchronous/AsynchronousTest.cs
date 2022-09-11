@@ -24,5 +24,50 @@ namespace BasicDemo.Asynchronous
                 }).ConfigureAwait(false).GetAwaiter().GetResult();
             }
         }
+
+        [Command]
+        public static void TestException()
+        {
+            Task.Run(() =>
+            {
+
+                try
+                {
+                    Parallel.For(0, 10, async i =>
+                    {
+                        await Task.Delay(1);
+
+                        throw new Exception("test");
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            });
+        }
+
+        [Command]
+        public static void TestException2()
+        {
+            Task.Run(async () =>
+            {
+
+                try
+                {
+                    var list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                    await Parallel.ForEachAsync(list, async (i, cancellationToken) =>
+                    {
+                        await Task.Delay(1);
+
+                        throw new Exception("ex");
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            });
+        }
     }
 }
