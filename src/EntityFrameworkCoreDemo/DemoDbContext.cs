@@ -28,6 +28,8 @@ namespace EntityFrameworkCoreDemo
 
         public virtual DbSet<LazyLoad.Post> Posts { get; set; }
 
+        public virtual DbSet<Concurrency.ConcurrencyEntity> ConcurrencyEntities { get; set; }
+
         /// <summary>
         /// 重写SaveChanges.
         /// </summary>
@@ -86,6 +88,9 @@ namespace EntityFrameworkCoreDemo
             // lazy load
             modelBuilder.ApplyConfiguration(new LazyLoad.BlogEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new LazyLoad.PostEntityTypeConfiguration());
+
+            // Concurrency
+            modelBuilder.ApplyConfiguration(new Concurrency.ConcurrencyEntityTypeConfiguration());
         }
     }
 }

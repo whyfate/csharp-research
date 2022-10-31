@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFrameworkCoreDemo.Concurrency;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace EntityFrameworkCoreDemo
             // await Basic.BasicTest.TestUpdateAsync();
             // await Basic.BasicTest.TestUpdate2Async();
             // await Basic.BasicTest.TestUpdate3Async();
-            await Basic.BasicTest.TestUpdate4Async();
+            // await Basic.BasicTest.TestUpdate4Async();
             // await Basic.BasicSelectTest.Test404PropertyAsync();
 
             // 根据子表查询
@@ -79,6 +80,8 @@ namespace EntityFrameworkCoreDemo
 
             // lazy load
             // await LazyLoad.LazyLoadTest.TestAsync();
+
+            await ConcurrencyTest.TestAsync();
         }
 
         static void Waiting()
