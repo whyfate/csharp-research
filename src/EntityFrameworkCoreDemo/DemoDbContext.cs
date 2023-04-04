@@ -30,6 +30,8 @@ namespace EntityFrameworkCoreDemo
 
         public virtual DbSet<Concurrency.ConcurrencyEntity> ConcurrencyEntities { get; set; }
 
+        public virtual DbSet<ChangeKeyType.GuidToStringEntity> GuidToStringEntities { get; set; }
+
         /// <summary>
         /// 重写SaveChanges.
         /// </summary>
@@ -91,6 +93,9 @@ namespace EntityFrameworkCoreDemo
 
             // Concurrency
             modelBuilder.ApplyConfiguration(new Concurrency.ConcurrencyEntityTypeConfiguration());
+
+            // change type 
+            modelBuilder.ApplyConfiguration(new ChangeKeyType.GuidToStringEntityTypeConfiguration());
         }
     }
 }

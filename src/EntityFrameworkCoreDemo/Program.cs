@@ -1,5 +1,4 @@
-﻿using EntityFrameworkCoreDemo.Concurrency;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -81,7 +80,11 @@ namespace EntityFrameworkCoreDemo
             // lazy load
             // await LazyLoad.LazyLoadTest.TestAsync();
 
-            await ConcurrencyTest.TestAsync();
+            // Concurrency
+            // await Concurrency.ConcurrencyTest.TestAsync();
+
+            // change Key Type
+            await ChangeKeyType.GuidToStringEntityTest.TestAsync();
         }
 
         static void Waiting()
