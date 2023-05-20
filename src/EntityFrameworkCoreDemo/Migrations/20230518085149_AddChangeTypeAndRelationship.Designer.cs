@@ -4,6 +4,7 @@ using EntityFrameworkCoreDemo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkCoreDemo.Migrations
 {
     [DbContext(typeof(DemoDbContext))]
-    partial class DemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230518085149_AddChangeTypeAndRelationship")]
+    partial class AddChangeTypeAndRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,9 @@ namespace EntityFrameworkCoreDemo.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProviderId")
+                    b.Property<Guid>("ProviderId")
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
@@ -64,16 +66,16 @@ namespace EntityFrameworkCoreDemo.Migrations
 
             modelBuilder.Entity("EntityFrameworkCoreDemo.ChangeKeyType.NumberProvider", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_NumberProvider_To_String");
+                    b.HasKey("Id");
 
                     b.ToTable("NumberProviders");
                 });
@@ -244,7 +246,8 @@ namespace EntityFrameworkCoreDemo.Migrations
                     b.HasOne("EntityFrameworkCoreDemo.ChangeKeyType.NumberProvider", "Provider")
                         .WithMany("Numbers")
                         .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Provider");
                 });

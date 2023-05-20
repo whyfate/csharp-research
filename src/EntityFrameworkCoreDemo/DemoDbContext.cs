@@ -32,6 +32,10 @@ namespace EntityFrameworkCoreDemo
 
         public virtual DbSet<ChangeKeyType.GuidToStringEntity> GuidToStringEntities { get; set; }
 
+        public virtual DbSet<ChangeKeyType.NumberProvider> NumberProviders { get; set; }
+
+        public virtual DbSet<ChangeKeyType.Number> Numbers { get; set; }
+
         /// <summary>
         /// 重写SaveChanges.
         /// </summary>
@@ -96,6 +100,8 @@ namespace EntityFrameworkCoreDemo
 
             // change type 
             modelBuilder.ApplyConfiguration(new ChangeKeyType.GuidToStringEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ChangeKeyType.NumberProviderTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ChangeKeyType.NumberTypeConfiguration());
         }
     }
 }
